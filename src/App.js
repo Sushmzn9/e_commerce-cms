@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { Signup } from "./components/pages/Signin-signup/Signup";
 import { Signin } from "./components/pages/Signin-signup/Signin";
 function App() {
