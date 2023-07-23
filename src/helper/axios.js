@@ -1,30 +1,39 @@
 import axios from "axios";
 
 const rootAPI = process.env.REACT_APP_ROOTAPI;
-const adminAPI = rootAPI + "/admin";
+const admiAPI = rootAPI + "/admin";
 
-const axiosProcessor = async ({ method, url, obj }) => {
+const axiosProcesor = async ({ method, url, obj }) => {
   try {
     const { data } = await axios({
       method,
       url,
       data: obj,
     });
+
     return data;
   } catch (error) {
     return {
       status: "error",
-      message: error.message,
+      message: error.response ? error?.response?.data?.message : error.message,
     };
   }
 };
 
-// admin api
+// ========= admin api
 export const postNewAdmin = (data) => {
   const obj = {
     method: "post",
-    url: adminAPI,
+    url: admiAPI,
     obj: data,
   };
-  return axiosProcessor(obj);
+  return axiosProcesor(obj);
+};
+export const postNewAdminVerificationInfo = (data) => {
+  const obj = {
+    method: "post",
+    url: admiAPI + "/admin-verification",
+    obj: data,
+  };
+  return axiosProcesor(obj);
 };

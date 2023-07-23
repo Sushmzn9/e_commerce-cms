@@ -80,12 +80,9 @@ export const AdminSignup = () => {
   return (
     <div>
       <Form
-        className="m-5 p-5 border shadow-lg rounded-5 "
+        className="p-3 m-5 border shadow-lg rounded-3 "
         onSubmit={handleOnSubmit}
       >
-        <div className="mb-3 fs-4 text-center text-bold text-uppercase ">
-          Registration Form
-        </div>
         {input.map((item, i) => (
           <CustomInput key={i} {...item} onChange={handleOnChange} />
         ))}

@@ -1,13 +1,11 @@
 import React from "react";
-import { Header } from "../../Layout/Header";
 import { AdminSignup } from "../../admin-signup/AdminSignup";
+import { AdminLayout } from "../../Layout/AdminLayout";
 
 export const Signup = () => {
   return (
-    <div>
-      <Header />
-
+    <AdminLayout title="Add New Admin">
       <AdminSignup />
-    </div>
+    </AdminLayout>
   );
 };
