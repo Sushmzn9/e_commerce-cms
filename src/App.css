@@ -1,5 +1,6 @@
 .main {
   min-height: 83vh;
+  background: rgba(205, 225, 225, 0.729);
 }
 
 .admin-layout .side-bar {

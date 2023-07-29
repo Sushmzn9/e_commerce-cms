@@ -18,6 +18,9 @@ export const Header = () => {
               <Link to="/dashboard" className="nav-link">
                 Dashboard
               </Link>
+              <Link to="/new-admin" className="nav-link">
+                Sign Out
+              </Link>
               <Link to="/" className="nav-link">
                 Sign In
               </Link>

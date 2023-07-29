@@ -12,7 +12,14 @@ import { Orders } from "./components/pages/Orders/Orders";
 import { Customer } from "./components/pages/Customer/Customer";
 import { AdminUser } from "./components/pages/AdminUser/AdminUser";
 import { Profile } from "./components/pages/Profile/Profile";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getCatsAction } from "./components/pages/Category/CategoryAction";
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCatsAction());
+  }, [dispatch]);
   return (
     <div className="App">
       <Routes>
