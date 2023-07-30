@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import catReducer from "../src/components/pages/Category/categorySlice";
-import { setModalShow } from "./System/systemSlice";
+import systemReducer from "./System/systemSlice";
+import adminReducer from "./components/pages/Signin-signup/adminSlice";
 const store = configureStore({
   reducer: {
     catInfo: catReducer,
-    systemInfo: setModalShow,
+    system: systemReducer,
+    adminInfo: adminReducer,
   },
 });
 export default store;

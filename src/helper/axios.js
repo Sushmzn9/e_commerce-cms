@@ -4,12 +4,21 @@ const rootAPI = process.env.REACT_APP_ROOTAPI;
 const admiAPI = rootAPI + "/admin";
 const catAPI = rootAPI + "/category";
 
-const axiosProcesor = async ({ method, url, obj }) => {
+const getAccessJWT = () => {
+  return sessionStorage.getItem("accessJWT");
+};
+
+const axiosProcesor = async ({ method, url, obj, isPrivate }) => {
+  const header = {
+    Authorization: isPrivate ? getAccessJWT() : null,
+  };
+
   try {
     const { data } = await axios({
       method,
       url,
       data: obj,
+      header,
     });
 
     return data;
@@ -30,6 +39,16 @@ export const postNewAdmin = (data) => {
   };
   return axiosProcesor(obj);
 };
+
+export const signInAdmin = (data) => {
+  const obj = {
+    method: "post",
+    url: admiAPI + "/sign-in",
+    obj: data,
+  };
+  return axiosProcesor(obj);
+};
+
 export const postNewAdminVerificationInfo = (data) => {
   const obj = {
     method: "post",
@@ -54,6 +73,7 @@ export const getNewCategory = () => {
   const obj = {
     method: "get",
     url: catAPI,
+    isPrivate: true,
   };
   return axiosProcesor(obj);
 };

@@ -1,41 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
 import { Header } from "../../Layout/Header";
 import { Footer } from "../../Layout/Footer";
 import { CustomInput } from "../../Custom-Input/CustomInput";
 import { Button, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { signInAdminAction } from "./adminAction";
 
+const initialState = {
+  email: "",
+  password: "",
+};
 export const Signin = () => {
-  const inputs = [
-    {
-      label: "Email",
-      name: " email",
-      required: true,
-      placeholder: "abc@gmail.com",
-      type: "email",
-    },
-    {
-      label: "Password",
-      name: " password",
-      required: true,
-      placeholder: "*******",
-      type: "password",
-    },
-  ];
+  const [form, setForm] = useState(initialState);
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    signInAdminAction(form);
+  };
+
   return (
     <div>
       <Header />
-      <main className="main">
-        <Form className="m-5 p-5 border shadow-lg rounded ">
-          <div className="text-center fs-3 pb-5 ">Login Now</div>
-          {inputs.map((item, i) => (
-            <CustomInput key={i} {...item} />
-          ))}
-          <div className="d-grid">
-            <Button>Login Now</Button>
+      <main className="main pt-5">
+        <Form
+          onSubmit={handleOnSubmit}
+          className="border p-3 shadow-lg"
+          style={{ width: "450px", margin: "auto" }}
+        >
+          <h1 className="mb-5">
+            Welcome Back
+            <hr />
+          </h1>
+
+          <CustomInput
+            label="Email"
+            name="email"
+            type="email"
+            required
+            value={form.email}
+            onChange={handleOnChange}
+          />
+          <CustomInput
+            label="Password"
+            name="password"
+            type="password"
+            value={form.password}
+            onChange={handleOnChange}
+            required
+          />
+
+          <div className="d-grid mt-3">
+            <Button variant="dark" type="submit">
+              Sign In
+            </Button>
           </div>
+          <p className="mt-2 text-end">
+            Forget password? <Link to="reset-pass-otp">reset </Link> now.
+          </p>
         </Form>
       </main>
-
       <Footer />
     </div>
   );

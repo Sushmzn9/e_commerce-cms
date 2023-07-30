@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "react-bootstrap";
-import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
 import { useDispatch } from "react-redux";
 import {
   deleteCatAction,
@@ -47,33 +45,35 @@ export const EditCatForm = ({ cat }) => {
 
   return (
     <Form onSubmit={handleOnSubmit} className="border p-4 rounded shadow-lg">
-      <Row>
-        <Col md={1}>
-          <Form.Check
-            type="switch"
-            name="status"
-            title="Status"
-            checked={form.status === "active"}
-            onChange={handleOnChange}
-          />
-        </Col>
-        <Col md={6}>
-          <Form.Control
-            placeholder="First name"
-            name="title"
-            value={form.title}
-            onChange={handleOnChange}
-          />
-        </Col>
-        <Col className="d-grid" md={4}>
-          <Button variant="dark" type="submit">
-            Update Category
-          </Button>
-          <Button variant="danger" onClick={handleOnDelete}>
-            Delete Category
-          </Button>
-        </Col>
-      </Row>
+      <Form.Group className="mt-3">
+        {" "}
+        <Form.Check
+          type="switch"
+          name="status"
+          title="Status"
+          checked={form.status === "active"}
+          onChange={handleOnChange}
+        />
+      </Form.Group>
+      <Form.Group className="mt-3">
+        {" "}
+        <Form.Control
+          placeholder="First name"
+          name="title"
+          value={form.title}
+          onChange={handleOnChange}
+        />
+      </Form.Group>
+      <Form.Group className="mt-3 d-grid">
+        <Button variant="dark" type="submit">
+          Update Category
+        </Button>
+      </Form.Group>
+      <Form.Group className="mt-3 d-grid">
+        <Button variant="danger" onClick={handleOnDelete}>
+          Delete Category
+        </Button>
+      </Form.Group>
     </Form>
   );
 };

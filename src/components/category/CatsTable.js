@@ -1,15 +1,24 @@
 import { Button, Form } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { EditCatForm } from "./EditCatForm";
 import { useState } from "react";
+import { CustomModal } from "../CustomModel/CustomModel";
+import { setModalShow } from "../../System/systemSlice";
 
 export const CatsTable = () => {
+  const dispatch = useDispatch();
   const [selectedCat, setSelectedCat] = useState({});
   const { cats } = useSelector((state) => state.catInfo);
+  const handleOnEdit = (obj) => {
+    setSelectedCat(obj);
+    dispatch(setModalShow(true));
+  };
   return (
     <>
-      <EditCatForm cat={selectedCat} />
+      <CustomModal title="Edit Category">
+        <EditCatForm cat={selectedCat} />
+      </CustomModal>
       <div className="d-flex justify-content-between mt-5">
         <div>30 Categories Found</div>
         <div>
@@ -49,7 +58,7 @@ export const CatsTable = () => {
                 <Button
                   variant="danger"
                   onClick={() =>
-                    setSelectedCat({ _id, status, title, slug, createdAt })
+                    handleOnEdit({ _id, status, title, slug, createdAt })
                   }
                 >
                   Edit

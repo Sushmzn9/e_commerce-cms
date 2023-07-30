@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  cats: [],
+  modalShow: false,
 };
 
 const systemSlice = createSlice({
