@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { setCats } from "./categorySlice";
 import {
   deleteCategory,
-  getNewCategory,
+  getCategories,
   postNewCategory,
   updateCategory,
 } from "../../../helper/axios";
@@ -19,7 +19,7 @@ export const postNewCatAction = (obj) => async (dispatch) => {
   }
 };
 export const getCatsAction = () => async (dispatch) => {
-  const { status, result } = await getNewCategory();
+  const { status, result } = await getCategories();
 
   if (status === "success") {
     // mount in the state
