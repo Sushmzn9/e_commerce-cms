@@ -1,0 +1,86 @@
+import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import { useDispatch } from "react-redux";
+
+import {
+  deletePayAction,
+  updatePayAction,
+} from "../pages/PaymentOption/PaymentAction";
+
+export const EditPayForm = ({ pay }) => {
+  const dispatch = useDispatch();
+
+  const [form, setForm] = useState({});
+
+  useEffect(() => {
+    setForm(pay);
+  }, [dispatch, pay]);
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    const { _id, title, status } = form;
+
+    dispatch(updatePayAction({ _id, title, status }));
+  };
+
+  const handleOnChange = (e) => {
+    let { name, value, checked } = e.target;
+    console.log(name, value, checked);
+
+    if (name === "status") {
+      value = checked ? "active" : "inactive";
+    }
+
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
+
+  const handleOnDelete = () => {
+    if (window.confirm("Are you sure you wnat to delete this category")) {
+      dispatch(deletePayAction(pay._id));
+    }
+  };
+
+  return (
+    <Form onSubmit={handleOnSubmit} className="border p-4 rounded shadow-lg">
+      <Form.Group className="mt-3">
+        {" "}
+        <Form.Check
+          type="switch"
+          name="status"
+          title="Status"
+          checked={form.status === "active"}
+          onChange={handleOnChange}
+        />
+      </Form.Group>
+      <Form.Group className="mt-3">
+        {" "}
+        <Form.Control
+          placeholder="Card"
+          name="title"
+          value={form.title}
+          onChange={handleOnChange}
+        />
+        <Form.Control
+          placeholder="description"
+          name="description"
+          value={form.description}
+          onChange={handleOnChange}
+        />
+      </Form.Group>
+      <Form.Group className="mt-3 d-grid">
+        <Button variant="dark" type="submit">
+          Update Category
+        </Button>
+      </Form.Group>
+      <Form.Group className="mt-3 d-grid">
+        <Button variant="danger" onClick={handleOnDelete}>
+          Delete Category
+        </Button>
+      </Form.Group>
+    </Form>
+  );
+};

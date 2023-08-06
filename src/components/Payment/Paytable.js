@@ -1,30 +1,29 @@
 import { Button, Form } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
-import { EditCatForm } from "./EditCatForm";
 import { useEffect, useState } from "react";
 import { CustomModal } from "../CustomModel/CustomModel";
 import { setModalShow } from "../../System/systemSlice";
-import { getCatsAction } from "../pages/Category/CategoryAction";
+import { EditPayForm } from "./EditPayTable";
+import { getPayAction } from "../pages/PaymentOption/PaymentAction";
 
-export const CatsTable = () => {
+export const PayTable = () => {
   const dispatch = useDispatch();
-  const [selectedCat, setSelectedCat] = useState({});
-  const { cats } = useSelector((state) => state.catInfo);
+  const [selectedPay, setSelectedPay] = useState({});
+  const { Payment } = useSelector((state) => state.paymentInfo);
   useEffect(() => {
-    dispatch(getCatsAction());
+    dispatch(getPayAction());
   }, [dispatch]);
   const handleOnEdit = (obj) => {
-    setSelectedCat(obj);
+    setSelectedPay(obj);
     dispatch(setModalShow(true));
   };
   return (
     <>
       <CustomModal title="Edit Category">
-        <EditCatForm cat={selectedCat} />
+        <EditPayForm pay={selectedPay} />
       </CustomModal>
       <div className="d-flex justify-content-between mt-5">
-        <div>30 Categories Found</div>
         <div>
           <Form.Control placeholder="Serach by name ..." />
         </div>
@@ -35,13 +34,13 @@ export const CatsTable = () => {
             <th>#</th>
             <th>Status</th>
             <th>Title</th>
-            <th>Slug</th>
+            <th>description</th>
             <th>Added At</th>
             <th>Edit</th>
           </tr>
         </thead>
         <tbody>
-          {cats.map(({ _id, status, title, slug, createdAt }, i) => (
+          {Payment.map(({ _id, status, title, description, createdAt }, i) => (
             <tr key={_id}>
               <td>{i + 1}</td>
               <td>
@@ -56,13 +55,13 @@ export const CatsTable = () => {
                 </span>
               </td>
               <td> {title}</td>
-              <td>{slug}</td>
+              <td>{description}</td>
               <td>{createdAt.slice(0, 10)}</td>
               <td>
                 <Button
                   variant="danger"
                   onClick={() =>
-                    handleOnEdit({ _id, status, title, slug, createdAt })
+                    handleOnEdit({ _id, status, title, description, createdAt })
                   }
                 >
                   Edit
