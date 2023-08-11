@@ -54,6 +54,14 @@ function App() {
           }
         />
         <Route
+          path="/product"
+          element={
+            <PrivateRoute>
+              <Products />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/payment-option"
           element={
             <PrivateRoute>
