@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getCatsAction } from "./components/pages/Category/CategoryAction";
 import { PrivateRoute } from "./components/Private/privateRoute";
+import { NewProduct } from "./components/pages/NewProduct/NewProduct";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -54,10 +55,10 @@ function App() {
           }
         />
         <Route
-          path="/product"
+          path="/new-product"
           element={
             <PrivateRoute>
-              <Products />
+              <NewProduct />
             </PrivateRoute>
           }
         />

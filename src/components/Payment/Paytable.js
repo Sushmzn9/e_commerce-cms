@@ -20,7 +20,7 @@ export const PayTable = () => {
   };
   return (
     <>
-      <CustomModal title="Edit Category">
+      <CustomModal title="Edit Pay Option">
         <EditPayForm pay={selectedPay} />
       </CustomModal>
       <div className="d-flex justify-content-between mt-5">
@@ -40,7 +40,7 @@ export const PayTable = () => {
           </tr>
         </thead>
         <tbody>
-          {Payment.map(({ _id, status, title, description, createdAt }, i) => (
+          {Payment?.map(({ _id, status, title, description, createdAt }, i) => (
             <tr key={_id}>
               <td>{i + 1}</td>
               <td>

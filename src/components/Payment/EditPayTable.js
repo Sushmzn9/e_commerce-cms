@@ -19,18 +19,13 @@ export const EditPayForm = ({ pay }) => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    const { _id, title, status } = form;
 
-    dispatch(updatePayAction({ _id, title, status }));
+    dispatch(updatePayAction(form));
   };
 
   const handleOnChange = (e) => {
-    let { name, value, checked } = e.target;
-    console.log(name, value, checked);
-
-    if (name === "status") {
-      value = checked ? "active" : "inactive";
-    }
+    let { name, value } = e.target;
+    console.log(name, value);
 
     setForm({
       ...form,
@@ -46,6 +41,16 @@ export const EditPayForm = ({ pay }) => {
 
   return (
     <Form onSubmit={handleOnSubmit} className="border p-4 rounded shadow-lg">
+      <label htmlFor="">Status</label>
+      <Form.Select name="status" onChange={handleOnChange} required>
+        <option value="">--Select One --</option>
+        <option value="active" selected={form.status === "active"}>
+          Active
+        </option>
+        <option value="inactive" selected={form.status === "inactive"}>
+          Inactive
+        </option>
+      </Form.Select>
       <Form.Group className="mt-3">
         {" "}
         <Form.Check
@@ -73,12 +78,12 @@ export const EditPayForm = ({ pay }) => {
       </Form.Group>
       <Form.Group className="mt-3 d-grid">
         <Button variant="dark" type="submit">
-          Update Category
+          Update Payment
         </Button>
       </Form.Group>
       <Form.Group className="mt-3 d-grid">
         <Button variant="danger" onClick={handleOnDelete}>
-          Delete Category
+          Delete Payment
         </Button>
       </Form.Group>
     </Form>
