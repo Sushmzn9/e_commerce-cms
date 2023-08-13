@@ -13,6 +13,8 @@ export const NewProduct = () => {
     status: "inactive",
   };
   const [form, setForm] = useState(initialState);
+  const [imgs, setImgs] = useState([]);
+
   const inputs = [
     {
       name: "name",
@@ -79,9 +81,27 @@ export const NewProduct = () => {
       [name]: value,
     });
   };
+  const handleOnImgAttached = (e) => {
+    const { files } = e.target;
+    setImgs(files);
+  };
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(postNewProductAction(form));
+    const formDt = new FormData();
+    // set all from data in FormDate
+
+    for (let key in form) {
+      formDt.append(key, form[key]);
+    }
+    console.log(formDt);
+
+    // check if there is any new image is being added
+    if (imgs.length) {
+      [...imgs].forEach((item) => {
+        formDt.append("images", item);
+      });
+    }
+    dispatch(postNewProductAction(formDt));
     console.log(form);
   };
   return (
@@ -107,6 +127,15 @@ export const NewProduct = () => {
           {inputs.map((item, i) => (
             <CustomInput {...item} key={i} onChange={handleOnChange} />
           ))}
+          <Form.Group className="mb-3 mt-3">
+            <Form.Control
+              type="file"
+              name="img"
+              multiple
+              onChange={handleOnImgAttached}
+              required={true}
+            />
+          </Form.Group>
           <div className="d-grid mt-3 mb-3">
             <Button variant="success" type="submit">
               Add Product

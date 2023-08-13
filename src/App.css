@@ -23,3 +23,11 @@
   line-height: 2rem;
   font-weight: 600;
 }
+
+.reset-pass form {
+  width: 450px;
+  margin: auto;
+  box-shadow: -5px 5px 10px grey;
+  padding: 1rem;
+  border-radius: 10px;
+}

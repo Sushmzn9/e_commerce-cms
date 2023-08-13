@@ -17,6 +17,8 @@ import { useEffect } from "react";
 import { getCatsAction } from "./components/pages/Category/CategoryAction";
 import { PrivateRoute } from "./components/Private/privateRoute";
 import { NewProduct } from "./components/pages/NewProduct/NewProduct";
+import EditProduct from "./components/pages/NewProduct/EditProduct";
+import { ResetPassword } from "./components/pages/Signin-signup/ResetPassword";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -28,6 +30,7 @@ function App() {
         <Route path="/" element={<Signin />} />
 
         <Route path="/admin-verification" element={<AdminVerification />} />
+        <Route path="password-reset" element={<ResetPassword />} />
 
         {/* Private Components */}
         <Route
@@ -51,6 +54,14 @@ function App() {
           element={
             <PrivateRoute>
               <Products />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/edit"
+          element={
+            <PrivateRoute>
+              <EditProduct />
             </PrivateRoute>
           }
         />

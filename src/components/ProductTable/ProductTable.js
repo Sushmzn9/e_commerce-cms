@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import { Button, Form, Table } from "react-bootstrap";
-import {
-  deleteProductAction,
-  getProductsAction,
-} from "../pages/NewProduct/ProductAction";
+import { getProductsAction } from "../pages/NewProduct/ProductAction";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export const ProductTable = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.productInfo);
+  console.log(products);
 
   useEffect(() => {
     dispatch(getProductsAction());
@@ -35,17 +34,21 @@ export const ProductTable = () => {
           {products?.map((item, i) => (
             <tr key={item._id}>
               <td>{i + 1}</td>
-              <td>no img</td>
+              <td>
+                <img
+                  src={
+                    process.env.REACT_APP_ROOTSERVER + item.thumbnail?.slice(6)
+                  }
+                  alt="img"
+                  width="150px"
+                />
+              </td>
               <td>{item.name}</td>
               <td>{item.qty}</td>
               <td>
-                <Button variant="warning">Edit</Button>
-                <Button
-                  variant="danger"
-                  onClick={() => dispatch(deleteProductAction(item._id))}
-                >
-                  Delete
-                </Button>
+                <Link to={`/edit`}>
+                  <Button variant="warning">Edit</Button>
+                </Link>
               </td>
             </tr>
           ))}

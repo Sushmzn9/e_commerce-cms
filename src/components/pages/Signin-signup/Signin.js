@@ -76,7 +76,7 @@ export const Signin = () => {
             </Button>
           </div>
           <p className="mt-2 text-end">
-            Forget password? <Link to="reset-pass-otp">reset </Link> now.
+            Forget password? <Link to="password-reset">reset </Link> now.
           </p>
         </Form>
       </main>

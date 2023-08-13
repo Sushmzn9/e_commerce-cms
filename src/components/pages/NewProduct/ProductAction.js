@@ -3,6 +3,7 @@ import {
   deleteProduct,
   getProducts,
   postNewProduct,
+  updateProduct,
 } from "../../../helper/axios";
 import { setProducts } from "./productSlice";
 
@@ -43,6 +44,23 @@ export const deleteProductAction = (_id) => async (dispatch) => {
   toast[status](message);
 
   if (status === "success") {
+    dispatch(getProductsAction());
+  }
+};
+
+export const updateNewProductAction = (data) => async (dispatch) => {
+  const pending = updateProduct(data);
+
+  toast.promise(pending, {
+    pending: "Please wait",
+  });
+
+  const { status, message } = await pending;
+
+  toast[status](message);
+
+  if (status === "success") {
+    /// fetch all the products
     dispatch(getProductsAction());
   }
 };

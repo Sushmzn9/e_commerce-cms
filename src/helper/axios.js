@@ -26,10 +26,23 @@ const axiosProcesor = async ({ method, url, obj, isPrivate, refreshToken }) => {
       data: obj,
       headers,
     });
-    console.log(data);
 
     return data;
   } catch (error) {
+    if (
+      error?.response?.status === 403 &&
+      error?.response?.data?.message === "jwt expired"
+    ) {
+      //1. get new accessJWt
+      const { status, accessJWT } = await getNewAccessJWT();
+      if (status === "success" && accessJWT) {
+        sessionStorage.setItem("accessJWT", accessJWT);
+      }
+
+      //2. continue the request
+
+      return axiosProcesor({ method, url, obj, isPrivate, refreshToken });
+    }
     return {
       status: "error",
       message: error.response ? error?.response?.data?.message : error.message,
@@ -111,7 +124,7 @@ export const deleteCategory = (_id) => {
 
 // ==========+ get new refreshJWT
 
-export const getNewRefreshJWT = () => {
+export const getNewAccessJWT = () => {
   const obj = {
     method: "get",
     url: admiAPI + "/get-accessjwt",
@@ -183,10 +196,10 @@ export const postNewProduct = (data) => {
   return axiosProcesor(obj);
 };
 
-export const getProducts = () => {
+export const getProducts = (_id) => {
   const obj = {
     method: "get",
-    url: productAPI,
+    url: _id ? productAPI + "/" + _id : productAPI,
     isPrivate: true,
   };
   return axiosProcesor(obj);
@@ -197,6 +210,25 @@ export const deleteProduct = (_id) => {
     method: "delete",
     url: productAPI + "/" + _id,
     isPrivate: true,
+  };
+  return axiosProcesor(obj);
+};
+
+export const updateProduct = (data) => {
+  const obj = {
+    method: "put",
+    url: productAPI,
+    obj: data,
+    isPrivate: true,
+  };
+  return axiosProcesor(obj);
+};
+// ======== restet password
+export const requestPassOTP = (email) => {
+  const obj = {
+    method: "post",
+    url: admiAPI + "/request-opt",
+    obj: { email },
   };
   return axiosProcesor(obj);
 };
