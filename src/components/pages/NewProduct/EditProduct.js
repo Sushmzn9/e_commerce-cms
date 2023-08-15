@@ -17,7 +17,7 @@ const EditProduct = () => {
   const [form, setForm] = useState({});
 
   const [imgs, setImgs] = useState([]);
-  const [imgToDelete, setImgToDel] = useState([]);
+  // const [imgToDelete, setImgToDel] = useState([]);
 
   useEffect(() => {
     // (async () => {
@@ -30,10 +30,10 @@ const EditProduct = () => {
 
   const getSelectedProduct = async () => {
     const { products } = await getProducts(_id);
-    console.log(products);
+
     products?._id && setForm(products);
+    console.log(products);
   };
-  console.log(form);
   const inputs = [
     {
       name: "name",
@@ -117,6 +117,7 @@ const EditProduct = () => {
       ...form,
       [name]: value,
     });
+    console.log(value);
   };
 
   const handleOnImageAtached = (e) => {
@@ -160,7 +161,7 @@ const EditProduct = () => {
   return (
     <AdminLayout title="Edit Product">
       <Link to="/product">
-        <Button variant="secondary">&lt; Back</Button>
+        <Button variant="secondary">&lt; Back {_id} </Button>
       </Link>
       <div className="mt-4">
         <Form onSubmit={handleOnSubmit}>
