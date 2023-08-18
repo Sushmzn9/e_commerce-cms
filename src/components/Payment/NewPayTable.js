@@ -45,7 +45,7 @@ export const NewPayForm = () => {
             <CustomInput
               label="Title"
               name="title"
-              placeholder="Pay By Credit Care"
+              placeholder="Pay By Credit Card"
               required
               onChange={handleOnChange}
               value={form.title}
