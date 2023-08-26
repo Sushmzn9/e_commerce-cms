@@ -2,6 +2,7 @@ import axios from "axios";
 
 const rootAPI = process.env.REACT_APP_ROOTAPI;
 const admiAPI = rootAPI + "/admin";
+const admidAPI = rootAPI + "/admindisplay";
 const catAPI = rootAPI + "/category";
 const payAPI = rootAPI + "/payment";
 const productAPI = rootAPI + "/product";
@@ -51,6 +52,16 @@ const axiosProcesor = async ({ method, url, obj, isPrivate, refreshToken }) => {
 };
 
 // ========= admin api
+
+export const getadminDisplay = () => {
+  const obj = {
+    method: "get",
+    url: admidAPI,
+    isPrivate: true,
+  };
+  return axiosProcesor(obj);
+};
+
 export const getAdminInfo = () => {
   const obj = {
     method: "get",

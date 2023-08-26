@@ -46,7 +46,7 @@ export const ProductTable = () => {
               <td>{item.name}</td>
               <td>{item.qty}</td>
               <td>
-                <Link to={`/edit`}>
+                <Link to={`/edit/${item._id}`}>
                   <Button variant="warning">Edit</Button>
                 </Link>
               </td>
