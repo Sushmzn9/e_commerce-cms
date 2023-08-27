@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import { AdminLayout } from "../../Layout/AdminLayout";
 import { CustomInput } from "../../Custom-Input/CustomInput";
 import { useDispatch, useSelector } from "react-redux";
-import { CustomModal } from "../../CustomModel/CustomModel";
-import { Button } from "react-bootstrap";
-import { setModalShow } from "../../../System/systemSlice";
+import { Button, Form } from "react-bootstrap";
+import { updateAdminProfileAction } from "./profileAction";
+import { ChangePassword } from "./ChangePassword";
 
 export const Profile = () => {
   const dispatch = useDispatch();
   const [form, setForm] = useState({});
   const { admin } = useSelector((state) => state.adminInfo);
-  const [modal, setModal] = useState("");
   const input = [
     {
       label: "First Name",
@@ -50,55 +49,41 @@ export const Profile = () => {
       type: "email",
       value: form.email,
     },
+    {
+      label: "Please enter the password to update",
+      name: "password",
+      required: true,
+      placeholder: "*****",
+      type: "password",
+    },
   ];
-  const handleOnEdit = () => {
-    setModal();
-    dispatch(setModalShow(true));
-    setModal("edit");
+  const handleOnSubmit = (e) => {
+    console.log(form);
+    e.preventDefault();
+    dispatch(updateAdminProfileAction(form));
   };
-  const handleOnChange = () => {
-    setModal("change");
-    dispatch(setModalShow(true));
+  const handleOnUpdate = (e) => {
+    const { name, value } = e.target;
+    setForm({
+      ...form,
+      [name]: value,
+    });
   };
+
   useEffect(() => {
     setForm(admin);
-  }, []);
+  }, [admin]);
   return (
     <div>
       <AdminLayout title="Profile">
-        {input.map((item, i) => (
-          <CustomInput key={i} {...item} />
-        ))}
-        <Button onClick={handleOnEdit}>update</Button>
+        <Form onSubmit={handleOnSubmit}>
+          {input.map((item, i) => (
+            <CustomInput key={i} {...item} onChange={handleOnUpdate} />
+          ))}
+          <Button type="submit">Update profile</Button>
+        </Form>
         <br />
-        <br />
-        <Button onClick={handleOnChange}>Change Password</Button>
-        {modal === "edit" && (
-          <CustomModal title="Enter your password to update">
-            <form className="formP">
-              <label for="password">Password</label>
-              <br />
-              <input className="" type="password" />
-              <br />
-              <Button variant="success">Submit</Button>
-            </form>
-          </CustomModal>
-        )}
-        {modal === "change" && (
-          <CustomModal title="Enter your password to Change">
-            <form className="formP">
-              <input className="" type="password" placeholder="Old Password" />
-              <input className="" type="password" placeholder="New Password" />
-              <input
-                className=""
-                type="password"
-                placeholder="Confirm Password"
-              />
-
-              <Button variant="success">Submit</Button>
-            </form>
-          </CustomModal>
-        )}
+        <ChangePassword />
       </AdminLayout>
     </div>
   );

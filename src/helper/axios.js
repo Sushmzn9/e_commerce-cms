@@ -94,6 +94,26 @@ export const postNewAdminVerificationInfo = (data) => {
   };
   return axiosProcesor(obj);
 };
+//=======
+export const updateAdminprofile = (data) => {
+  const obj = {
+    method: "put",
+    url: admiAPI,
+    obj: data,
+    isPrivate: true,
+  };
+  return axiosProcesor(obj);
+};
+
+export const updateAdminPassword = (data) => {
+  const obj = {
+    method: "put",
+    url: admiAPI + "/change-password",
+    obj: data,
+    isPrivate: true,
+  };
+  return axiosProcesor(obj);
+};
 
 // ========= category api
 export const postNewCategory = (data) => {

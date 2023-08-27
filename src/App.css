@@ -38,3 +38,16 @@
   border: 2px solid black;
   padding: 10px;
 }
+.form2 {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.card {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 2rem;
+  margin: auto;
+}
