@@ -19,10 +19,14 @@ import { PrivateRoute } from "./components/Private/privateRoute";
 import { NewProduct } from "./components/pages/NewProduct/NewProduct";
 import EditProduct from "./components/pages/NewProduct/EditProduct";
 import { ResetPassword } from "./components/pages/Signin-signup/ResetPassword";
+import { getProductsAction } from "./components/pages/NewProduct/ProductAction";
+import { getPayAction } from "./components/pages/PaymentOption/PaymentAction";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCatsAction());
+    dispatch(getProductsAction());
+    dispatch(getPayAction());
   }, [dispatch]);
   return (
     <div className="App">

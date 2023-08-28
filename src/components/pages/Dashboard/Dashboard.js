@@ -1,6 +1,7 @@
 import React from "react";
 import { AdminLayout } from "../../Layout/AdminLayout";
 import { Card } from "react-bootstrap";
+import Barchart from "./Barchart";
 
 export const Dashboard = () => {
   const colors = [
@@ -15,7 +16,8 @@ export const Dashboard = () => {
   ];
   return (
     <AdminLayout title="dashboard">
-      <div className="card">
+      <Barchart />
+      {/* <div className="card">
         {colors.map((variant) => (
           <Card
             bg={variant.toLowerCase()}
@@ -34,7 +36,7 @@ export const Dashboard = () => {
             </Card.Body>
           </Card>
         ))}
-      </div>
+      </div> */}
     </AdminLayout>
   );
 };
