@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { PieChart, Pie, ResponsiveContainer, Tooltip, Legend } from "recharts";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductsAction } from "../NewProduct/ProductAction";
 
 const Chart = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProductsAction());
+  }, [dispatch]);
   const { products } = useSelector((state) => state.productInfo);
   const chartData = products.map((product) => ({
     name: product.name,
@@ -25,7 +30,6 @@ const Chart = () => {
           label
         />
         <Tooltip />
-        <Legend />
       </PieChart>
     </ResponsiveContainer>
   );
