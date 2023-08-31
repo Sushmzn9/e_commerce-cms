@@ -135,8 +135,8 @@ const EditProduct = () => {
     const formDt = new FormData();
     // set all from data in FormDate
 
-    const { sku, slug, _v, createAt, updatedAt, ...rest } = form;
-    for (let key in form) {
+    const { sku, slug, __v, createdAt, updatedAt, ...rest } = form;
+    for (let key in rest) {
       formDt.append(key, form[key]);
     }
     console.log(formDt);
@@ -154,7 +154,7 @@ const EditProduct = () => {
   const handleOnDelete = async () => {
     if (window.confirm("Are you sure you want to delete")) {
       const isDeleted = await dispatch(deleteProductAction(_id));
-      isDeleted && navigate("/product");
+      isDeleted ? navigate("/product") : alert("Sorry unable to delate");
     }
   };
 

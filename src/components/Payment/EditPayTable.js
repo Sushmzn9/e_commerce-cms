@@ -7,9 +7,11 @@ import {
   deletePayAction,
   updatePayAction,
 } from "../pages/PaymentOption/PaymentAction";
+import { useNavigate } from "react-router-dom";
 
 export const EditPayForm = ({ pay }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({});
 
@@ -52,7 +54,6 @@ export const EditPayForm = ({ pay }) => {
         </option>
       </Form.Select>
       <Form.Group className="mt-3">
-        {" "}
         <Form.Check
           type="switch"
           name="status"
