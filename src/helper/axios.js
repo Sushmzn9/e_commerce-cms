@@ -258,7 +258,7 @@ export const updateProduct = (data) => {
 export const requestPassOTP = (email) => {
   const obj = {
     method: "post",
-    url: admiAPI + "/request-opt",
+    url: admiAPI + "/request-otp",
     obj: { email },
   };
   return axiosProcesor(obj);

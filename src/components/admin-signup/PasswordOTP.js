@@ -14,7 +14,7 @@ export const PasswordOTP = ({ handleOnOtpRequest }) => {
 
   return (
     <Form>
-      <h3>Requst OTP</h3>
+      <h3>Request OTP</h3>
       <hr />
 
       <CustomInput

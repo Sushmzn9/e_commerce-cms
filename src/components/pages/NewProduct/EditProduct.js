@@ -151,10 +151,10 @@ const EditProduct = () => {
     dispatch(updateNewProductAction(formDt));
   };
 
-  const handleOnDelete = async () => {
+  const handleOnDelete = () => {
     if (window.confirm("Are you sure you want to delete")) {
-      const isDeleted = await dispatch(deleteProductAction(_id));
-      isDeleted ? navigate("/product") : alert("Sorry unable to delate");
+      const isDeleted = dispatch(deleteProductAction(_id));
+      isDeleted && navigate("/product");
     }
   };
 

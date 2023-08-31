@@ -63,7 +63,6 @@ export const EditPayForm = ({ pay }) => {
         />
       </Form.Group>
       <Form.Group className="mt-3">
-        {" "}
         <Form.Control
           placeholder="Card"
           name="title"
