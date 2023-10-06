@@ -20,7 +20,6 @@ export const postNewpayAction = (obj) => async (dispatch) => {
 };
 export const getPayAction = () => async (dispatch) => {
   const { status, result } = await getPayment();
-
   if (status === "success") {
     // mount in the state
     dispatch(setPayments(result));
