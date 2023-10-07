@@ -11,9 +11,9 @@ const initialState = {
   email: "",
   password: "",
 };
+
 export const Signin = () => {
   const location = useLocation();
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [form, setForm] = useState(initialState);
@@ -27,7 +27,6 @@ export const Signin = () => {
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-
     setForm({
       ...form,
       [name]: value,
@@ -45,10 +44,10 @@ export const Signin = () => {
       <main className="main pt-5">
         <Form
           onSubmit={handleOnSubmit}
-          className="border p-3 shadow-lg"
+          className="border p-3 shadow-lg rounded"
           style={{ width: "450px", margin: "auto" }}
         >
-          <h1 className="mb-5">
+          <h1 className="mb-5 text-center">
             Welcome Back
             <hr />
           </h1>
@@ -76,7 +75,7 @@ export const Signin = () => {
             </Button>
           </div>
           <p className="mt-2 text-end">
-            Forget password? <Link to="password-reset">reset </Link> now.
+            Forget password? <Link to="password-reset">Reset</Link> now.
           </p>
         </Form>
       </main>

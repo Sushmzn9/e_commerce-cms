@@ -1,6 +1,5 @@
 .main {
-  min-height: 83vh;
-  background: rgba(205, 225, 225, 0.729);
+  min-height: 87vh; /* Adjust the value as needed for vertical alignment */
 }
 
 .admin-layout .side-bar {
@@ -55,6 +54,19 @@
   box-shadow: -5px 5px 10px grey;
   padding: 1rem;
   border-radius: 10px;
+}
+.btn-dark {
+  background-color: #343a40;
+  border: none;
+}
+.text-end a {
+  text-decoration: none;
+  color: #007bff;
+  transition: color 0.3s ease-in-out;
+}
+
+.text-end a:hover {
+  color: #0056b3;
 }
 
 .formP {
@@ -149,4 +161,59 @@
 
 .back-button:hover {
   text-decoration: underline;
+}
+
+.profile-container {
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px auto;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-control {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.btn-dark {
+  background-color: #343a40;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-dark:hover {
+  background-color: #1a1e21;
+}
+
+.change-password-section {
+  margin-top: 20px;
+}
+
+.change-password-button {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.change-password-button:hover {
+  background-color: #0056b3;
 }

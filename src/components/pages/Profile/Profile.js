@@ -17,7 +17,7 @@ export const Profile = () => {
       required: true,
       placeholder: "First Name",
       type: "text",
-      value: form.fName,
+      value: form.fName || "",
     },
     {
       label: "Last Name",
@@ -25,21 +25,21 @@ export const Profile = () => {
       required: true,
       placeholder: "Last Name",
       type: "text",
-      value: form.lName,
+      value: form.lName || "",
     },
     {
       label: "Phone",
       name: "phone",
       placeholder: "1234567890",
       type: "number",
-      value: form.phone,
+      value: form.phone || "",
     },
     {
       label: "Address",
       name: "address",
       placeholder: "2/2 Waterloo, Sydney",
       type: "text",
-      value: form.address,
+      value: form.address || "",
     },
     {
       label: "Email",
@@ -47,7 +47,7 @@ export const Profile = () => {
       required: true,
       placeholder: "abc@gmail.com",
       type: "email",
-      value: form.email,
+      value: form.email || "",
     },
     {
       label: "Please enter the password to update",
@@ -57,11 +57,12 @@ export const Profile = () => {
       type: "password",
     },
   ];
+
   const handleOnSubmit = (e) => {
-    console.log(form);
     e.preventDefault();
     dispatch(updateAdminProfileAction(form));
   };
+
   const handleOnUpdate = (e) => {
     const { name, value } = e.target;
     setForm({
@@ -73,18 +74,22 @@ export const Profile = () => {
   useEffect(() => {
     setForm(admin);
   }, [admin]);
+
   return (
-    <div>
-      <AdminLayout title="Profile">
-        <Form onSubmit={handleOnSubmit}>
+    <AdminLayout title="Profile">
+      <div className="profile-container">
+        <Form onSubmit={handleOnSubmit} className="profile-form">
           {input.map((item, i) => (
             <CustomInput key={i} {...item} onChange={handleOnUpdate} />
           ))}
-          <Button type="submit">Update profile</Button>
+          <Button variant="dark" type="submit">
+            Update Profile
+          </Button>
         </Form>
-        <br />
-        <ChangePassword />
-      </AdminLayout>
-    </div>
+        <div className="change-password-section">
+          <ChangePassword />
+        </div>
+      </div>
+    </AdminLayout>
   );
 };
