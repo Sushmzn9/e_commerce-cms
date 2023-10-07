@@ -1,5 +1,6 @@
-import Card from "react-bootstrap/Card";
+import React from "react";
 import { useSelector } from "react-redux";
+import { Card, Row, Col } from "react-bootstrap";
 
 const CardTab = () => {
   const { cats } = useSelector((state) => state.catInfo);
@@ -8,48 +9,43 @@ const CardTab = () => {
 
   return (
     <div className="cardtab">
-      <Card
-        bg="success"
-        text="light"
-        style={{ width: "18rem", height: "13rem" }}
-        className="mb-2"
-      >
-        <Card.Header>Admin</Card.Header>
-        <Card.Body>
-          <Card.Title>Total Admin </Card.Title>
-          <Card.Text>
-            <h2>{admindisplay.length}</h2>
-          </Card.Text>
-        </Card.Body>
-      </Card>
-      <Card
-        bg="dark"
-        text="light"
-        style={{ width: "18rem", height: "13rem" }}
-        className="mb-2"
-      >
-        <Card.Header>Orders</Card.Header>
-        <Card.Body>
-          <Card.Title>Total Orders </Card.Title>
-          <Card.Text>
-            <h2>{cats.length}</h2>
-          </Card.Text>
-        </Card.Body>
-      </Card>
-      <Card
-        bg="primary"
-        text="light"
-        style={{ width: "18rem", height: "13rem" }}
-        className="mb-2"
-      >
-        <Card.Header>Products</Card.Header>
-        <Card.Body>
-          <Card.Title>Total Products </Card.Title>
-          <Card.Text>
-            <h2>{products.length}</h2>
-          </Card.Text>
-        </Card.Body>
-      </Card>
+      <Row>
+        <Col md={4} sm={6} xs={12}>
+          <Card className="mb-3">
+            <Card.Header className="bg-success text-light">Admin</Card.Header>
+            <Card.Body>
+              <Card.Title>Total Admin</Card.Title>
+              <Card.Text>
+                <h2>{admindisplay.length}</h2>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={4} sm={6} xs={12}>
+          <Card className="mb-3">
+            <Card.Header className="bg-dark text-light">Orders</Card.Header>
+            <Card.Body>
+              <Card.Title>Total Orders</Card.Title>
+              <Card.Text>
+                <h2>{cats.length}</h2>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={4} sm={6} xs={12}>
+          <Card className="mb-3">
+            <Card.Header className="bg-primary text-light">
+              Products
+            </Card.Header>
+            <Card.Body>
+              <Card.Title>Total Products</Card.Title>
+              <Card.Text>
+                <h2>{products.length}</h2>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
     </div>
   );
 };

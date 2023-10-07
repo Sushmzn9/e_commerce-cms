@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutAdmin } from "../../helper/axios";
 import { setAdmin } from "../pages/Signin-signup/adminSlice";
+
 export const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -24,34 +25,33 @@ export const Header = () => {
     dispatch(setAdmin({}));
     navigate("/");
   };
+
   return (
-    <div>
-      <Navbar expand="md" variant="dark" className="bg-dark">
-        <Container>
-          <Link to="/" className="navbar-brand">
-            E-Store
-          </Link>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
-              {admin?._id ? (
-                <>
-                  <Link to="/dashboard" className="nav-link">
-                    Dashboard
-                  </Link>
-                  <Link to="#!" className="nav-link" onClick={handleOnLogout}>
-                    Sign Out
-                  </Link>
-                </>
-              ) : (
-                <Link to="/" className="nav-link">
-                  Sign In
+    <Navbar expand="md" variant="dark" className="bg-dark" fluid={true}>
+      <Container>
+        <Link to="/" className="navbar-brand">
+          Tech-Store
+        </Link>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            {admin?._id ? (
+              <>
+                <Link to="/dashboard" className="nav-link">
+                  Dashboard
                 </Link>
-              )}
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </div>
+                <Link to="#!" className="nav-link" onClick={handleOnLogout}>
+                  Sign Out
+                </Link>
+              </>
+            ) : (
+              <Link to="/" className="nav-link">
+                Sign In
+              </Link>
+            )}
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };

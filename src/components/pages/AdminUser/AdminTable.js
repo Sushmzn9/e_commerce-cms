@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Form, Table } from "react-bootstrap";
+import { Form, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getadminDisplayAction } from "./AdminDisplayAction";
 
@@ -27,7 +27,6 @@ const AdminTable = () => {
             <th>Phone</th>
             <th>email</th>
             <th>Createdat</th>
-            <th></th>
           </tr>
         </thead>
 
