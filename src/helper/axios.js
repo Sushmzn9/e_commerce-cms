@@ -75,6 +75,7 @@ export const postNewAdmin = (data) => {
     method: "post",
     url: admiAPI,
     obj: data,
+    isPrivate: true,
   };
   return axiosProcesor(obj);
 };
